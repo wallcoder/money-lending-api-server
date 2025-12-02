@@ -47,7 +47,7 @@ class LoanResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\DuesRelationManager::class,
         ];
     }
 

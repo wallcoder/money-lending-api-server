@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\Loans\Schemas;
 
+use App\Enums\LoanFrequency;
+use App\Enums\LoanStatus;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -22,13 +24,18 @@ class LoanForm
                 TextInput::make('total_interest')
                     ->required()
                     ->numeric(),
+                TextInput::make('rate')
+                    ->required()
+                    ->numeric(),
                 DatePicker::make('start_date')
                     ->required(),
                 DatePicker::make('end_date')
                     ->required(),
-                TextInput::make('frequency')
+                Select::make('frequency')
+                    ->options(LoanFrequency::class)
                     ->required(),
-                TextInput::make('status')
+                Select::make('status')
+                    ->options(LoanStatus::class)
                     ->required(),
             ]);
     }
