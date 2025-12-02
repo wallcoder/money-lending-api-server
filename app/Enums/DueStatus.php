@@ -2,7 +2,9 @@
 
 namespace App\Enums;
 
-enum DueStatus
+enum DueStatus: string
 {
-    //
+    case PAID = 'paid';
+    case PARTIAL = 'partial';
+    case UNPAID = 'unpaid';
 }
