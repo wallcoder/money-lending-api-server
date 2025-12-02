@@ -15,7 +15,7 @@ class DuesTable
     {
         return $table
             ->columns([
-                TextColumn::make('loan_id')
+                TextColumn::make('loan.id')
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('due_date')

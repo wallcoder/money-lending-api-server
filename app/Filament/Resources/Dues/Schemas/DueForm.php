@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Dues\Schemas;
 
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
@@ -12,9 +13,9 @@ class DueForm
     {
         return $schema
             ->components([
-                TextInput::make('loan_id')
+                Select::make('loan_id')
                     ->required()
-                    ->numeric(),
+                    ->relationship('loan', 'id'),
                 DatePicker::make('due_date')
                     ->required(),
                 TextInput::make('amount')

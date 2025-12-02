@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Filament\Schemas\Schema;
+use Filament\Tables\Table;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Table::configureUsing(function (Table $table): void {
+            $table
+                ->defaultCurrency('INR')
+                ->defaultNumberLocale('en_IN');
+        });
+        Schema::configureUsing(function (Schema $schema): void {
+            $schema
+                ->defaultCurrency('INR')
+                ->defaultNumberLocale('en_IN');
+        });
     }
 }
