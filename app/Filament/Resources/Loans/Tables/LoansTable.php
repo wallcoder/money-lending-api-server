@@ -15,7 +15,7 @@ class LoansTable
     {
         return $table
             ->columns([
-                TextColumn::make('customer.id')
+                TextColumn::make('customer.full_name')
                     ->searchable(),
                 TextColumn::make('principal')
                     ->numeric()

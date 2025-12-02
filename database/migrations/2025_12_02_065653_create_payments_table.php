@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\PaymentStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,7 +20,7 @@ return new class extends Migration
             $table->string('reference_payment_id')->nullable();
             $table->decimal('amount', 10, 2);
             $table->dateTime('paid_at');
-            $table->enum('status', ['paid', 'attempted', 'failed']);
+            $table->enum('status', array_column(PaymentStatus::cases(), 'values'))->default(PaymentStatus::ATTEMPTED->value);
             $table->json('allocation');
             $table->softDeletes();
             $table->timestamps();

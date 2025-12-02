@@ -1,5 +1,7 @@
 <?php
 
+use App\Enums\LoanFrequency;
+use App\Enums\LoanStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,8 +20,8 @@ return new class extends Migration
             $table->decimal('total_interest', 10, 2);
             $table->date('start_date');
             $table->date('end_date');
-            $table->enum('frequency', ['daily', 'weekly', 'monthly', 'yearly']);
-            $table->enum('status', ['active', 'closed', 'defaulted']);
+            $table->enum('frequency', array_column(LoanFrequency::cases(), 'values'))->default(LoanFrequency::DAILY->value);
+            $table->enum('status',  array_column(LoanStatus::cases(), 'values'))->default(LoanStatus::ACTIVE->value);
             $table->softDeletes();
             $table->timestamps();
         });

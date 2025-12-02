@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\DueStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,7 +20,7 @@ return new class extends Migration
             $table->decimal('penalty_amount', 10, 2);
             $table->decimal('amount_paid', 10, 2);
             $table->decimal('penalty_paid', 10, 2);
-            $table->enum('status', ['paid', 'partial', 'unpaid']);
+            $table->enum('status', array_column(DueStatus::cases(), 'values'))->default(DueStatus::UNPAID->value);
             $table->timestamps();
         });
     }
