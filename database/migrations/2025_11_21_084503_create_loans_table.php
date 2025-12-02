@@ -18,11 +18,12 @@ return new class extends Migration
             $table->foreignId('customer_id')->constrained('customers');
             $table->decimal('principal', 10, 2);
             $table->decimal('total_interest', 10, 2);
+            $table->decimal('total_amount', 10, 2);
             $table->decimal('rate', 10, 2)->max(100);
             $table->date('start_date');
             $table->date('end_date');
-            $table->enum('frequency', array_column(LoanFrequency::cases(), 'values'))->default(LoanFrequency::DAILY->value);
-            $table->enum('status',  array_column(LoanStatus::cases(), 'values'))->default(LoanStatus::ACTIVE->value);
+            $table->enum('frequency', array_column(LoanFrequency::cases(), 'value'))->default(LoanFrequency::DAILY->value);
+            $table->enum('status',  array_column(LoanStatus::cases(), 'value'))->default(LoanStatus::ACTIVE->value);
             $table->softDeletes();
             $table->timestamps();
         });

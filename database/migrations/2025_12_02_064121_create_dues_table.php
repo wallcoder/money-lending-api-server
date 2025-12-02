@@ -20,7 +20,7 @@ return new class extends Migration
             $table->decimal('penalty_amount', 10, 2);
             $table->decimal('amount_paid', 10, 2);
             $table->decimal('penalty_paid', 10, 2);
-            $table->enum('status', array_column(DueStatus::cases(), 'values'))->default(DueStatus::UNPAID->value);
+            $table->enum('status', array_column(DueStatus::cases(), 'value'))->default(DueStatus::UNPAID->value);
             $table->timestamps();
         });
     }

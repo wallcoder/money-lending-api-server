@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Due extends Model
 {
     protected $fillable = [
-        'loadn_id', 'due_date', 'amoount', 'penalty_amount',
+        'loan_id', 'due_date', 'amount', 'penalty_amount',
         'amount_paid', 'penalty_paid', 'status'
     ];
 

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('reference_payment_id')->nullable();
             $table->decimal('amount', 10, 2);
             $table->dateTime('paid_at');
-            $table->enum('status', array_column(PaymentStatus::cases(), 'values'))->default(PaymentStatus::ATTEMPTED->value);
+            $table->enum('status', array_column(PaymentStatus::cases(), 'value'))->default(PaymentStatus::ATTEMPTED->value);
             $table->json('allocation');
             $table->softDeletes();
             $table->timestamps();

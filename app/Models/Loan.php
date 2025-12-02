@@ -14,9 +14,11 @@ class Loan extends Model
         'customer_id',
         'principal',
         'total_interest',
+        'total_amount',
         'start_date',
         'end_date',
         'frequency',
+        'rate',
         'status'
     ];
 
