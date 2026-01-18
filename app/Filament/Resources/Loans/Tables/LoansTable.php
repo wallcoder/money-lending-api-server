@@ -2,11 +2,14 @@
 
 namespace App\Filament\Resources\Loans\Tables;
 
+use App\Enums\LoanStatus;
+use App\Helpers\LoanHelper;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class LoansTable
@@ -17,11 +20,22 @@ class LoansTable
             ->columns([
                 TextColumn::make('customer.full_name')
                     ->searchable(),
+                TextColumn::make('reference_no')
+                    ->sortable()
+                    ->copyable()
+                    ->tooltip('Click to copy')
+                    ->searchable(),
                 TextColumn::make('principal')
                     ->numeric()
+                    ->money()
                     ->sortable(),
                 TextColumn::make('total_interest')
                     ->numeric()
+                    ->money()
+                    ->sortable(),
+                TextColumn::make('total_amount')
+                    ->numeric()
+                    ->money()
                     ->sortable(),
                 TextColumn::make('start_date')
                     ->date()
@@ -30,8 +44,12 @@ class LoansTable
                     ->date()
                     ->sortable(),
                 TextColumn::make('frequency')
+                    ->formatStateUsing(fn ($state) => ucfirst($state))
                     ->searchable(),
                 TextColumn::make('status')
+                    ->badge()
+                    ->color(fn ($state) => LoanHelper::getColor($state))
+                    ->formatStateUsing(fn ($state) => ucfirst($state))
                     ->searchable(),
                 TextColumn::make('deleted_at')
                     ->dateTime()
@@ -47,7 +65,7 @@ class LoansTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                SelectFilter::make('status')->options(LoanStatus::class),
             ])
             ->recordActions([
                 ViewAction::make(),

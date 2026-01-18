@@ -58,11 +58,11 @@ class LoanForm
                     DatePicker::make('start_date')
                         ->default(now())
                         ->required(),
-                        // ->rules(['before_or_equal:end_date']),
+                    // ->rules(['before_or_equal:end_date']),
 
                     DatePicker::make('end_date')
                         ->required(),
-                        // ->rules(['after_or_equal:start_date']),
+                    // ->rules(['after_or_equal:start_date']),
 
                     Select::make('frequency')
                         ->options(LoanFrequency::class)

@@ -12,19 +12,20 @@ class Payment extends Model
 
     protected $fillable = [
         'loan_id', 'customer_id', 'reference_order_id',
-        'reference_payment_id', 'paid_at', 'status', 'allocation'
+        'reference_payment_id', 'paid_at', 'status', 'allocation',
     ];
 
     protected $casts = [
-        'allocation' => 'array'
+        'allocation' => 'array',
     ];
 
-
-    public function loan(): BelongsTo{
+    public function loan(): BelongsTo
+    {
         return $this->belongsTo(Loan::class);
     }
 
-    public function customer(): BelongsTo{
+    public function customer(): BelongsTo
+    {
         return $this->belongsTo(Customer::class);
     }
 }

@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('loans', function (Blueprint $table) {
             $table->id();
+            $table->string('reference_no');
             $table->foreignId('customer_id')->constrained('customers');
             $table->decimal('principal', 10, 2);
             $table->decimal('total_interest', 10, 2);
@@ -23,7 +24,7 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->enum('frequency', array_column(LoanFrequency::cases(), 'value'))->default(LoanFrequency::DAILY->value);
-            $table->enum('status',  array_column(LoanStatus::cases(), 'value'))->default(LoanStatus::ACTIVE->value);
+            $table->enum('status', array_column(LoanStatus::cases(), 'value'))->default(LoanStatus::ACTIVE->value);
             $table->softDeletes();
             $table->timestamps();
         });

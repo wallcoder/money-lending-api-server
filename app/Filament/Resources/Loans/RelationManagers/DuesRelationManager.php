@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Loans\RelationManagers;
 
+use App\Helpers\DueHelper;
 use Filament\Actions\AssociateAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\CreateAction;
@@ -54,13 +55,13 @@ class DuesRelationManager extends RelationManager
                 TextEntry::make('due_date')
                     ->date(),
                 TextEntry::make('amount')
-                    ->numeric(),
+                    ->money(),
                 TextEntry::make('penalty_amount')
-                    ->numeric(),
+                    ->money(),
                 TextEntry::make('amount_paid')
-                    ->numeric(),
+                    ->money(),
                 TextEntry::make('penalty_paid')
-                    ->numeric(),
+                    ->money(),
                 TextEntry::make('status'),
                 TextEntry::make('created_at')
                     ->dateTime()
@@ -92,6 +93,9 @@ class DuesRelationManager extends RelationManager
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('status')
+                    ->formatStateUsing(fn ($state) => ucfirst($state))
+                    ->color(fn ($state) => DueHelper::getColor($state))
+                    ->badge()
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()
@@ -106,13 +110,13 @@ class DuesRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                CreateAction::make(),
-                AssociateAction::make(),
+                CreateAction::make()->slideOver(),
+                // AssociateAction::make(),
             ])
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
-                DissociateAction::make(),
+                // DissociateAction::make(),
                 DeleteAction::make(),
             ])
             ->toolbarActions([

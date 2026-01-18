@@ -27,8 +27,10 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            ->brandLogo(fn() => view('logo'))
+            ->brandLogo(fn () => view('logo'))
             ->login()
+            ->sidebarCollapsibleOnDesktop()
+            ->spa()
             ->colors([
                 'primary' => Color::Red,
             ])

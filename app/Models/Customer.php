@@ -9,18 +9,21 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Customer extends Model
 {
     protected $fillable = [
-        'user_id', 'full_name', 'phone', 'address'
+        'user_id', 'full_name', 'phone', 'address',
     ];
 
-    public function user(): BelongsTo{
+    public function user(): BelongsTo
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function loans(): HasMany{
+    public function loans(): HasMany
+    {
         return $this->hasMany(Loan::class);
     }
 
-    public function payments(): HasMany{
+    public function payments(): HasMany
+    {
         return $this->hasMany(Payment::class);
     }
 }

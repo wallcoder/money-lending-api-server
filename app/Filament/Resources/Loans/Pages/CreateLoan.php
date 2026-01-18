@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Loans\Pages;
 
 use App\Filament\Resources\Loans\LoanResource;
+use App\Helpers\FilamentHelper;
 use App\Models\Due;
 use Carbon\Carbon;
 use Filament\Resources\Pages\CreateRecord;
@@ -13,6 +14,8 @@ class CreateLoan extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
+        $data['reference_no'] = FilamentHelper::generateLoanRefNo();
+
         return $data;
     }
 
@@ -27,7 +30,7 @@ class CreateLoan extends CreateRecord
             ->diffInDays(Carbon::parse($data['end_date'])) + 1;
         $start = Carbon::parse($data['start_date']);
 
-        $dailyAmount = $loan->total_amount / $days; // example logic
+        $dailyAmount = $loan->total_amount / $days;
 
         for ($i = 0; $i < $days; $i++) {
             Due::create([

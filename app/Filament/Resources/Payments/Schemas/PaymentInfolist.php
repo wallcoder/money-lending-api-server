@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Payments\Schemas;
 
+use App\Helpers\PaymentHelper;
 use App\Models\Payment;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
@@ -22,10 +23,14 @@ class PaymentInfolist
                 TextEntry::make('reference_payment_id')
                     ->placeholder('-'),
                 TextEntry::make('amount')
-                    ->numeric(),
+                    ->money(),
                 TextEntry::make('paid_at')
                     ->dateTime(),
-                TextEntry::make('status'),
+                TextEntry::make('status')
+                    ->formatStateUsing(fn ($state) => ucfirst($state))
+                    ->color(fn ($state) => PaymentHelper::getColor($state))
+                    ->badge()
+                    ->searchable(),
                 TextEntry::make('allocation')
                     ->columnSpanFull(),
                 TextEntry::make('deleted_at')

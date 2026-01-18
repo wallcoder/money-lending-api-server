@@ -23,9 +23,9 @@ class LoanResource extends Resource
 
     // protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = 'id';
+    protected static ?string $recordTitleAttribute = 'reference_no';
 
-    protected static int|null $navigationSort = 0;
+    protected static ?int $navigationSort = 0;
 
     protected static string|UnitEnum|null $navigationGroup = 'Finance';
 

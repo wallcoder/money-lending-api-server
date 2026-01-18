@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Payments\Tables;
 
+use App\Helpers\PaymentHelper;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -27,12 +28,15 @@ class PaymentsTable
                 TextColumn::make('reference_payment_id')
                     ->searchable(),
                 TextColumn::make('amount')
-                    ->numeric()
+                    ->money()
                     ->sortable(),
                 TextColumn::make('paid_at')
                     ->dateTime()
                     ->sortable(),
                 TextColumn::make('status')
+                    ->formatStateUsing(fn ($state) => ucfirst($state))
+                    ->color(fn ($state) => PaymentHelper::getColor($state))
+                    ->badge()
                     ->searchable(),
                 TextColumn::make('deleted_at')
                     ->dateTime()
@@ -52,7 +56,7 @@ class PaymentsTable
             ])
             ->recordActions([
                 ViewAction::make(),
-                EditAction::make(),
+                // EditAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

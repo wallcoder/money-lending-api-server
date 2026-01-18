@@ -9,13 +9,11 @@ class Due extends Model
 {
     protected $fillable = [
         'loan_id', 'due_date', 'amount', 'penalty_amount',
-        'amount_paid', 'penalty_paid', 'status'
+        'amount_paid', 'penalty_paid', 'status',
     ];
 
-    public function loan(): BelongsTo{
+    public function loan(): BelongsTo
+    {
         return $this->belongsTo(Loan::class);
     }
-
-
-
 }

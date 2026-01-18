@@ -57,9 +57,9 @@ class PaymentResource extends Resource
     {
         return [
             'index' => ListPayments::route('/'),
-            'create' => CreatePayment::route('/create'),
+            // 'create' => CreatePayment::route('/create'),
             'view' => ViewPayment::route('/{record}'),
-            'edit' => EditPayment::route('/{record}/edit'),
+            // 'edit' => EditPayment::route('/{record}/edit'),
         ];
     }
 

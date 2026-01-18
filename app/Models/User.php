@@ -47,7 +47,8 @@ class User extends Authenticatable
         ];
     }
 
-    protected function customer(): HasOne{
+    protected function customer(): HasOne
+    {
         return $this->hasOne(Customer::class);
     }
 }

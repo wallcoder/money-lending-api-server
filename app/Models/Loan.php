@@ -10,8 +10,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Loan extends Model
 {
     use SoftDeletes;
+
     protected $fillable = [
         'customer_id',
+        'reference_no',
         'principal',
         'total_interest',
         'total_amount',
@@ -19,18 +21,21 @@ class Loan extends Model
         'end_date',
         'frequency',
         'rate',
-        'status'
+        'status',
     ];
 
-    public function customer(): BelongsTo{
+    public function customer(): BelongsTo
+    {
         return $this->belongsTo(Customer::class);
     }
 
-    public function payments(): HasMany{
+    public function payments(): HasMany
+    {
         return $this->hasMany(Payment::class);
     }
 
-    public function dues(): HasMany{
+    public function dues(): HasMany
+    {
         return $this->hasMany(Due::class);
     }
 }

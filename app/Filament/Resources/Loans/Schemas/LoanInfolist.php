@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Loans\Schemas;
 
+use App\Helpers\LoanHelper;
 use App\Models\Loan;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
@@ -16,16 +17,22 @@ class LoanInfolist
                 Section::make()->schema([
                     TextEntry::make('customer.full_name')
                         ->label('Customer'),
+                    TextEntry::make('reference_no'),
                     TextEntry::make('principal')
-                        ->numeric(),
+                        ->money(),
+
                     TextEntry::make('total_interest')
-                        ->numeric(),
+                        ->money(),
+
                     TextEntry::make('start_date')
                         ->date(),
                     TextEntry::make('end_date')
                         ->date(),
                     TextEntry::make('frequency'),
-                    TextEntry::make('status'),
+                    TextEntry::make('status')
+                        ->badge()
+                        ->color(fn ($state) => LoanHelper::getColor($state))
+                        ->formatStateUsing(fn ($state) => ucfirst($state)),
                     TextEntry::make('deleted_at')
                         ->dateTime()
                         ->visible(fn (Loan $record): bool => $record->trashed()),
