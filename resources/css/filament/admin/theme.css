@@ -1,0 +1,104 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Filament/**/*';
+@source '../../../../resources/views/filament/**/*';
+
+
+/* Primary color scheme (teal for modern SaaS feel) */
+:root {
+    --p-50: 20 100% 98%;
+    --p-500: 171 100% 37%;
+    --p-600: 171 100% 32%;
+}
+
+/* Dark mode overrides */
+.dark {
+    --p-50: 171 100% 15%;
+    --p-500: 171 100% 45%;
+}
+
+/* Sidebar - Compact, dark teal with hover states */
+.fi-sidebar {
+    @apply bg-gray-900/95 backdrop-blur-sm border-r border-gray-800/50;
+}
+
+.fi-sidebar-header {
+    @apply bg-gradient-to-r from-teal-500/20 to-teal-600/20 border-b border-teal-500/20;
+}
+
+.fi-sidebar-item {
+    @apply rounded-lg mx-2;
+}
+
+.fi-sidebar-item-button {
+    @apply text-gray-300 hover:bg-teal-500/20 hover:text-white transition-all duration-200;
+}
+
+.fi-sidebar-item-active .fi-sidebar-item-button {
+    @apply bg-gradient-to-r from-teal-500 to-teal-600 text-white shadow-lg shadow-teal-500/25;
+}
+
+/* Topbar - Clean gradient */
+.fi-topbar {
+    @apply bg-gradient-to-r from-gray-900/95 to-gray-800/95 backdrop-blur-sm border-b border-gray-800/50;
+}
+
+/* Forms - Glassmorphism cards */
+.fi-fo-card,
+.fi-ta-card {
+    @apply bg-white/70 dark:bg-gray-900/80 backdrop-blur-xl border border-gray-200/50 dark:border-gray-800/50 shadow-xl;
+}
+
+.fi-fo-field-wrapper {
+    @apply rounded-xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200/30 dark:border-gray-700/50;
+}
+
+.fi-fo-field-wrapper:focus-within {
+    @apply ring-2 ring-teal-500/30 shadow-teal-500/20 bg-white dark:bg-gray-800/70;
+}
+
+/* Buttons - Gradient primary, subtle secondary */
+.fi-btn {
+    @apply rounded-xl font-medium transition-all duration-200;
+}
+
+[data-slot='primary'] {
+    @apply bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white shadow-lg shadow-teal-500/25 hover:shadow-xl hover:shadow-teal-500/40 active:scale-95;
+}
+
+[data-slot='secondary'] {
+    @apply bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm hover:bg-white dark:hover:bg-gray-800/90 border border-gray-200/50 dark:border-gray-700/50;
+}
+
+/* Tables - Modern zebra striping */
+.fi-ta-tbl {
+    @apply border border-gray-200/50 dark:border-gray-800/50;
+}
+
+.fi-ta-tbl-row:nth-child(even) {
+    @apply bg-gray-50/50 dark:bg-gray-800/30;
+}
+
+.fi-ta-tbl-row:hover {
+    @apply bg-teal-500/5 dark:bg-teal-500/10;
+}
+
+/* Notifications - Slide-in from right */
+.fi-notifications-item {
+    @apply backdrop-blur-sm bg-white/90 dark:bg-gray-900/90 border border-gray-200/50 dark:border-gray-800/50 shadow-2xl;
+}
+
+.fi-notifications-item[data-state='success'] {
+    @apply border-teal-500/30 bg-teal-500/10;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .fi-sidebar {
+        @apply bg-gray-900/98;
+    }
+
+    .fi-topbar {
+        @apply bg-gray-900/98;
+    }
+}
