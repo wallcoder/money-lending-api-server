@@ -114,8 +114,8 @@ class DuesRelationManager extends RelationManager
                 // AssociateAction::make(),
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ViewAction::make()->slideOver(),
+                EditAction::make()->slideOver(),
                 // DissociateAction::make(),
                 DeleteAction::make(),
             ])
