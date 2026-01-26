@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Loans\Tables;
 use App\Enums\LoanStatus;
 use App\Helpers\LoanHelper;
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
@@ -70,6 +71,7 @@ class LoansTable
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
+                DeleteAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

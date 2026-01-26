@@ -40,11 +40,12 @@ class FilamentHelper
         $prefix = "EILN{$year}";
 
         $latestLoan = Loan::where('reference_no', 'like', "{$prefix}%")
+            ->withTrashed()
             ->orderByDesc('reference_no')
             ->first();
 
         if ($latestLoan) {
-            $lastNumber = (int) substr($latestLoan->loan_ref_no, -4);
+            $lastNumber = (int) substr($latestLoan->reference_no, -4);
             $nextNumber = $lastNumber + 1;
         } else {
             $nextNumber = 1;

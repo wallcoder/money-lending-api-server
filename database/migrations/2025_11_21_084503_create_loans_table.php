@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('loans', function (Blueprint $table) {
             $table->id();
-            $table->string('reference_no');
+            $table->string('reference_no')->unique();
             $table->foreignId('customer_id')->constrained('customers');
             $table->decimal('principal', 10, 2);
             $table->decimal('total_interest', 10, 2);

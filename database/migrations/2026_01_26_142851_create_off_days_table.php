@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('off_days', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->nullable();
+            $table->date('from');
+            $table->date('to');
             $table->timestamps();
         });
     }

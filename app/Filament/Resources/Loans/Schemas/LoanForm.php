@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Loans\Schemas;
 
 use App\Enums\LoanFrequency;
 use App\Enums\LoanStatus;
+use App\Helpers\FilamentHelper;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -23,6 +24,10 @@ class LoanForm
                         ->placeholder('Select Customer')
                         ->searchable()
                         ->required(),
+                    TextInput::make('reference_no')
+                        ->disabled()
+                        ->dehydrated()
+                        ->default(fn () => FilamentHelper::generateLoanRefNo()),
                     TextInput::make('principal')
                         ->helperText('Puk zat')
                         ->minValue(0)
