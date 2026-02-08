@@ -7,3 +7,41 @@
 
 
 
+.fi-main {
+    padding-left: 0.25rem !important;
+}
+
+/* label.fi-fo-field-label>span.fi-fo-field-label-content {
+    @apply text-xs;
+} */
+
+form .fi-section.fi-section:not(.fi-section-not-contained):not(.fi-divided)>.fi-section-content-ctn>.fi-section-content,
+.fi-section:not(.fi-section-not-contained).fi-divided>.fi-section-content-ctn>.fi-section-content {
+    @apply p-1;
+}
+
+.fi-sc.fi-sc-has-gap {
+    @apply gap-1;
+}
+
+
+.fi-ta-table > tbody {
+    @apply divide-none
+}
+
+
+.fi-ta-table > tbody {
+    @apply divide-none
+}
+
+.fi-ta-text {
+    @apply py-0.2
+}
+
+.fi-ta-table > .whitespace-nowrap {
+    @apply py-0.2
+}
+
+.fi-ta-cell > div:has(.flex) {
+    @apply py-0.2
+}

@@ -65,10 +65,8 @@ class LoanForm
                         ->required(),
                     // ->rules(['before_or_equal:end_date']),
 
-                    DatePicker::make('end_date')
-                        ->required(),
-                    // ->rules(['after_or_equal:start_date']),
-
+                    TextInput::make('days')->numeric()->minValue(0),
+                    
                     Select::make('frequency')
                         ->options(LoanFrequency::class)
                         ->default('daily')

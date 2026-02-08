@@ -11,17 +11,17 @@ class CreateLoan extends CreateRecord
 {
     protected static string $resource = LoanResource::class;
 
-    // protected function mutateFormDataBeforeCreate(array $data): array
-    // {
-    //     return $data;
-    // }
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        return $data;
+    }
 
     protected function afterCreate(): void
     {
         $loan = $this->record;
         $data = $this->data;
 
-        info('HELLO');
+
 
         $days = Carbon::parse($data['start_date'])
             ->diffInDays(Carbon::parse($data['end_date'])) + 1;

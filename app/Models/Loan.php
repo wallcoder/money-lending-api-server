@@ -21,6 +21,7 @@ class Loan extends Model
         'end_date',
         'frequency',
         'rate',
+        'days',
         'status',
     ];
 
