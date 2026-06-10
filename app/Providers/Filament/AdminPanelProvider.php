@@ -31,7 +31,7 @@ class AdminPanelProvider extends PanelProvider
             ->brandLogo(fn () => view('logo'))
             ->navigationGroups(['Finance', 'Meta', 'Settings'])
             ->sidebarWidth('15rem')
-            ->topNavigation()
+            // ->topNavigation()
             ->maxContentWidth('full')
             // ->spa()
             ->viteTheme('resources/css/filament/admin/theme.css')

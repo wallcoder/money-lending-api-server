@@ -21,26 +21,45 @@ class CreateLoan extends CreateRecord
         $loan = $this->record;
         $data = $this->data;
 
-
-
-        $days = Carbon::parse($data['start_date'])
-            ->diffInDays(Carbon::parse($data['end_date'])) + 1;
-        $start = Carbon::parse($data['start_date']);
+        $days = (int) $data['days'];
+        $startDate = Carbon::parse($data['start_date']);
 
         $dailyAmount = $loan->total_amount / $days;
 
-        // dd($days);
+        $currentDate = $startDate->copy();
+        
+        $offDays = \App\Models\OffDay::all();
 
         for ($i = 0; $i < $days; $i++) {
+            // Skip off days
+            while ($this->isOffDay($currentDate, $offDays)) {
+                $currentDate->addDay();
+            }
+
             Due::create([
                 'loan_id' => $loan->id,
-                'due_date' => $start->copy()->addDays($i),
+                'due_date' => $currentDate->copy()->format('Y-m-d'),
                 'amount' => $dailyAmount,
                 'penalty_amount' => 0,
                 'amount_paid' => 0,
                 'penalty_paid' => 0,
                 'status' => 'unpaid',
             ]);
+
+            $currentDate->addDay();
         }
+    }
+
+    protected function isOffDay(Carbon $date, $offDays): bool
+    {
+        $dateString = $date->format('Y-m-d');
+        
+        foreach ($offDays as $offDay) {
+            if ($dateString >= $offDay->from && $dateString <= $offDay->to) {
+                return true;
+            }
+        }
+        
+        return false;
     }
 }
